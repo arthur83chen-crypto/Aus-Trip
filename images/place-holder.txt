@@ -1,1 +1,31 @@
-/
+Australia Trip Pro
+
+assets/
+│
+├── banner/
+│     sydney.jpg
+│     blue-mountains.jpg
+│     kiama.jpg
+│     coffs.jpg
+│     byron.jpg
+│     goldcoast.jpg
+│     brisbane.jpg
+│
+├── places/
+│     opera-house.jpg
+│     fish-market.jpg
+│     harbour-bridge.jpg
+│     scenic-world.jpg
+│     three-sisters.jpg
+│     kiama-blowhole.jpg
+│     ...
+│
+├── icons/
+│     luggage.png
+│     weather.png
+│
+index.html
+style.css
+app.js
+manifest.json
+service-worker.js
