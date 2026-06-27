@@ -1,0 +1,132 @@
+:root {
+  --bg: #081522;
+  --card: rgba(255, 255, 255, 0.08);
+  --line: rgba(255, 255, 255, 0.08);
+  --text: #fff;
+  --sub: #9db7d4;
+  --blue: #2E90FA;
+  --green: #30D158;
+  --red: #FF453A;
+  --radius: 24px;
+}
+
+* {
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang TC", sans-serif;
+  background: linear-gradient(180deg, #05111d, #0a2138);
+  color: white;
+  padding-bottom: 110px;
+  min-height: 100vh;
+}
+
+img { display: block; width: 100%; }
+button { border: none; background: none; font: inherit; color: inherit; }
+
+/* SPA 頁面流控制 */
+.page { display: none; }
+.page.active { display: block; animation: fadeIn 0.25s ease-in-out; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 頂部 Hero & Dashboard */
+.hero { height: 280px; position: relative; overflow: hidden; }
+.hero img { height: 100%; object-fit: cover; filter: brightness(0.75); }
+.heroOverlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.6));
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
+}
+.tripTitle { font-size: 30px; font-weight: 800; }
+.tripSub { margin-top: 6px; color: #d7e8ff; font-size: 14px; }
+
+.dashboard { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 16px; margin-top: -30px; position: relative; z-index: 5; }
+.card { background: var(--card); backdrop-filter: blur(20px); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
+.cardTitle { font-size: 12px; color: var(--sub); margin-bottom: 6px; }
+.cardValue { font-size: 22px; font-weight: 700; }
+
+/* 元件公共樣式 */
+.section { padding: 20px; }
+.sectionTitle { font-size: 24px; font-weight: 800; margin-bottom: 16px; }
+
+.search-box, .input-bar input {
+  width: 100%; padding: 12px 16px; border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.06);
+  color: white; outline: none; font-size: 15px; margin-bottom: 14px;
+}
+.search-box:focus, .input-bar input:focus { border-color: var(--blue); }
+
+.input-bar { display: flex; gap: 10px; margin-bottom: 20px; }
+.input-bar input { margin-bottom: 0; }
+.primary-btn {
+  background: var(--blue); color: white; padding: 0 18px; border-radius: 14px;
+  font-size: 18px; font-weight: bold; cursor: pointer;
+}
+
+/* 行程卡片 */
+.dayCard { background: var(--card); border-radius: 22px; overflow: hidden; margin-bottom: 20px; border: 1px solid var(--line); }
+.dayImage { height: 160px; object-fit: cover; }
+.dayContent { padding: 16px; min-height: 60px; }
+.dayTop { display: flex; justify-content: space-between; align-items: center; }
+.dayBadge { background: var(--blue); padding: 6px 14px; border-radius: 30px; font-size: 12px; font-weight: 700; }
+.dayDate { color: var(--sub); font-size: 12px; }
+
+.place {
+  padding: 14px; border-radius: 16px; background: rgba(255,255,255,0.04);
+  margin-top: 12px; display: flex; gap: 12px; cursor: grab; transition: 0.2s;
+}
+.place:active { cursor: grabbing; }
+.place:hover { background: rgba(255,255,255,0.08); }
+.sortable-ghost { opacity: 0.3; background: var(--blue) !important; }
+
+.placeImage { width: 80px; height: 80px; border-radius: 12px; object-fit: cover; flex-shrink: 0; }
+.placeInfo { flex: 1; }
+.placeTitle { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.placeTime { font-size: 12px; color: #5fb5ff; }
+.placeNote { font-size: 13px; color: var(--sub); margin-top: 4px; line-height: 1.4; }
+.delBtn { background: rgba(255,69,58,0.15); color: #ff453a; border-radius: 10px; padding: 4px 10px; font-size: 13px; cursor: pointer; align-self: center; }
+
+/* 🧳 行李箱面板樣式 */
+.bagGrid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.bagCard { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 16px; }
+.bagCard h3 { font-size: 18px; border-bottom: 1px solid var(--line); padding-bottom: 8px; margin-bottom: 12px; color: #fff; }
+.bagItem { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.02); }
+.bagItemLeft { display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 15px; }
+.bagItemLeft input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--green); cursor: pointer; }
+.bagItemLeft.done { text-decoration: line-through; color: var(--sub); opacity: 0.6; }
+.bagItemDel { color: var(--red); opacity: 0.5; font-size: 13px; cursor: pointer; }
+.bagItemDel:hover { opacity: 1; }
+
+/* 底部導覽列 */
+.bottomBar {
+  position: fixed; left: 16px; right: 16px; bottom: 16px; height: 72px;
+  background: rgba(12,24,40,0.85); backdrop-filter: blur(24px);
+  border-radius: 24px; display: flex; justify-content: space-around; align-items: center;
+  border: 1px solid rgba(255,255,255,0.08); z-index: 999;
+}
+.tab { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; color: #8eaecf; cursor: pointer; }
+.tab.active { color: white; }
+.tab i { font-size: 20px; font-style: normal; }
+
+/* 浮動按鈕與視窗 */
+.fab { position: fixed; right: 24px; bottom: 104px; width: 56px; height: 56px; border-radius: 50%; background: var(--blue); display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); cursor: pointer; z-index: 998; }
+.modal { position: fixed; inset: 0; background: rgba(4, 12, 22, 0.8); backdrop-filter: blur(12px); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 16px; }
+.modalCard { background: #0b1f35; border: 1px solid var(--line); border-radius: var(--radius); width: 100%; max-width: 440px; padding: 20px; }
+.modalHeader { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.modalBody label { display: block; margin: 10px 0 4px; font-size: 13px; color: var(--sub); }
+.modalBody input, .modalBody textarea { width: 100%; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--line); border-radius: 10px; color: white; outline: none; }
+.saveBtn { width: 100%; background: var(--blue); color: white; padding: 12px; border-radius: 12px; font-weight: bold; margin-top: 16px; cursor: pointer; }
+
+#toast { position: fixed; top: 24px; left: 50%; transform: translateX(-50%) translateY(-20px); background: rgba(48,209,88,0.95); color: white; padding: 10px 22px; border-radius: 20px; font-size: 14px; font-weight: bold; z-index: 4000; opacity: 0; transition: 0.3s ease; pointer-events: none; }
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* PWA 橫幅提示 */
+#pwaBanner { position: fixed; top: 0; left: 0; right: 0; background: var(--blue); padding: 10px; text-align: center; font-size: 13px; font-weight: bold; z-index: 5000; display: none; justify-content: center; gap: 10px; align-items: center; }
+#pwaBanner button { background: white; color: var(--bg); padding: 2px 8px; border-radius: 6px; }
