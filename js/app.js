@@ -1,6 +1,6 @@
 /* app.js — Main app bootstrap, weather, PWA, settings */
 
-const DEPARTURE_DATE = '2025-07-10'; // ← 改成你的出發日期
+const DEPARTURE_DATE = '202ˊ-07-01'; // ← 改成你的出發日期
 const TRIP_CITY = 'Sydney';
 
 const App = (() => {
