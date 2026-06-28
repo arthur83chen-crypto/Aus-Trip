@@ -1,0 +1,101 @@
+[
+  {
+    "id": "demo1",
+    "day": 1,
+    "date": "",
+    "city": "Sydney",
+    "name": "Sydney Opera House",
+    "time": "09:00",
+    "note": "世界遺產，建議提早到避開人潮",
+    "img": "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=700&q=80&auto=format",
+    "map": "https://maps.google.com/?q=Sydney+Opera+House"
+  },
+  {
+    "id": "demo2",
+    "day": 1,
+    "date": "",
+    "city": "Sydney",
+    "name": "Sydney Harbour Bridge",
+    "time": "11:00",
+    "note": "可免費步行過橋，BridgeClimb 需預約",
+    "img": "https://images.unsplash.com/photo-1524293581917-878a6d017c71?w=700&q=80&auto=format",
+    "map": "https://maps.google.com/?q=Sydney+Harbour+Bridge"
+  },
+  {
+    "id": "demo3",
+    "day": 1,
+    "date": "",
+    "city": "Sydney",
+    "name": "The Rocks 歷史街區",
+    "time": "13:00",
+    "note": "週末市集，殖民時期石砌建築",
+    "img": "https://images.unsplash.com/photo-1553697388-94e804e2f0f6?w=700&q=80&auto=format",
+    "map": "https://maps.google.com/?q=The+Rocks+Sydney"
+  },
+  {
+    "id": "demo4",
+    "day": 2,
+    "date": "",
+    "city": "Blue Mountains",
+    "name": "三姊妹岩 Three Sisters",
+    "time": "10:00",
+    "note": "Echo Point 觀景台，距Sydney約2小時車程",
+    "img": "https://images.unsplash.com/photo-1549735777-87d0d3b58a7e?w=700&q=80&auto=format",
+    "map": "https://maps.google.com/?q=Three+Sisters+Blue+Mountains"
+  },
+  {
+    "id": "demo5",
+    "day": 2,
+    "date": "",
+    "city": "Blue Mountains",
+    "name": "Scenic World 纜車",
+    "time": "13:00",
+    "note": "世界最陡峭的旅客鐵路，建議購套票",
+    "img": "https://images.unsplash.com/photo-1548278155-2e65e0b32e64?w=700&q=80&auto=format",
+    "map": "https://maps.google.com/?q=Scenic+World+Katoomba"
+  },
+  {
+    "id": "demo6",
+    "day": 3,
+    "date": "",
+    "city": "Kiama",
+    "name": "Kiama Blowhole",
+    "time": "10:30",
+    "note": "世界最大的噴水孔之一，漲潮時最壯觀",
+    "img": "https://images.unsplash.com/photo-1568254183919-78a4f43a2877?w=700&q=80&auto=format",
+    "map": "https://maps.google.com/?q=Kiama+Blowhole"
+  },
+  {
+    "id": "demo7",
+    "day": 5,
+    "date": "",
+    "city": "Byron Bay",
+    "name": "Cape Byron 燈塔",
+    "time": "07:00",
+    "note": "澳洲大陸最東端，看日出必去",
+    "img": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&q=80&auto=format",
+    "map": "https://maps.google.com/?q=Cape+Byron+Lighthouse"
+  },
+  {
+    "id": "demo8",
+    "day": 6,
+    "date": "",
+    "city": "Gold Coast",
+    "name": "Surfers Paradise Beach",
+    "time": "09:00",
+    "note": "黃金海岸最著名海灘，衝浪天堂",
+    "img": "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=700&q=80&auto=format",
+    "map": "https://maps.google.com/?q=Surfers+Paradise+Beach"
+  },
+  {
+    "id": "demo9",
+    "day": 7,
+    "date": "",
+    "city": "Brisbane",
+    "name": "South Bank Parklands",
+    "time": "10:00",
+    "note": "市區河畔公園，有人工海灘",
+    "img": "https://images.unsplash.com/photo-1546268060-2592ff93ee24?w=700&q=80&auto=format",
+    "map": "https://maps.google.com/?q=South+Bank+Parklands+Brisbane"
+  }
+]

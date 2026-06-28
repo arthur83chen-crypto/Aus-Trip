@@ -1,0 +1,10 @@
+/* ── responsive.css ── */
+@media (min-width: 430px) {
+  .bottom-nav { border-radius: 0 0 16px 16px; border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .bottom-nav { padding-bottom: max(8px, env(safe-area-inset-bottom)); }
+}

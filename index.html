@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#0B1F35" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Australia Trip Pro</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="images/icons/icon-192.png" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body class="light-mode">
+
+<!-- ── INSTALL BANNER ── -->
+<div id="install-banner" class="install-banner hidden">
+  <span>💡 安裝至桌面，享受完整離線體驗</span>
+  <button id="install-btn" class="install-btn">安裝</button>
+  <button id="install-close" class="install-close">✕</button>
+</div>
+
+<!-- ── MAIN APP ── -->
+<div class="app-container">
+
+  <!-- ╔═ HOME TAB ═╗ -->
+  <section id="tab-home" class="tab-section active">
+
+    <!-- Hero Banner -->
+    <div class="hero-banner" id="hero-banner">
+      <img id="hero-img" src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=900&q=80&auto=format" alt="Sydney" class="hero-img" crossorigin="anonymous" />
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-badge">🇦🇺 Australia Road Trip</div>
+        <h1 class="hero-title">Sydney → Blue Mountains<br/>→ Kiama → Brisbane</h1>
+        <div class="hero-meta" id="hero-meta">
+          <span id="hero-city">📍 Sydney</span>
+          <span id="hero-countdown">📅 旅程第 <strong>1</strong> 天</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Today Summary -->
+    <div class="section-wrap">
+      <div class="section-header"><h2 class="section-title">今日概覽</h2></div>
+      <div class="summary-grid">
+        <div class="summary-card glass" id="weather-card">
+          <div class="summary-icon" id="weather-icon">⛅</div>
+          <div class="summary-info">
+            <div class="summary-value" id="weather-temp">--°C</div>
+            <div class="summary-label" id="weather-desc">載入天氣中…</div>
+          </div>
+          <div class="weather-details" id="weather-details"></div>
+        </div>
+        <div class="summary-card glass" id="countdown-card">
+          <div class="summary-icon">✈️</div>
+          <div class="summary-info">
+            <div class="summary-value" id="days-to-go">--</div>
+            <div class="summary-label">出發倒數（天）</div>
+          </div>
+        </div>
+        <div class="summary-card glass">
+          <div class="summary-icon">🗺️</div>
+          <div class="summary-info">
+            <div class="summary-value" id="total-spots">0</div>
+            <div class="summary-label">景點安排</div>
+          </div>
+        </div>
+        <div class="summary-card glass">
+          <div class="summary-icon">💰</div>
+          <div class="summary-info">
+            <div class="summary-value" id="today-expense">A$0</div>
+            <div class="summary-label">今日花費</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Today's Itinerary -->
+    <div class="section-wrap">
+      <div class="section-header">
+        <h2 class="section-title">今日行程</h2>
+        <button class="see-all-btn" onclick="switchTab('trip')">全部 →</button>
+      </div>
+      <div id="today-trip-list" class="today-trip-list">
+        <div class="empty-state">
+          <span class="empty-icon">🗺️</span>
+          <p>尚未安排今日行程</p>
+          <button class="btn-primary" onclick="switchTab('trip')">前往安排</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Luggage Quick View -->
+    <div class="section-wrap">
+      <div class="section-header">
+        <h2 class="section-title">行李準備度</h2>
+        <button class="see-all-btn" onclick="switchTab('luggage')">查看 →</button>
+      </div>
+      <div class="luggage-progress-wrap glass">
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" id="home-luggage-bar"></div>
+        </div>
+        <div class="progress-label" id="home-luggage-label">0 / 0 件已打包</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ╔═ TRIP TAB ═╗ -->
+  <section id="tab-trip" class="tab-section">
+    <div class="tab-header glass-header">
+      <h2>行程安排</h2>
+      <div class="tab-header-actions">
+        <input type="text" id="trip-search" class="search-input" placeholder="搜尋景點…" />
+        <button class="btn-icon" id="add-trip-btn" title="新增行程">＋</button>
+      </div>
+    </div>
+    <div id="trip-list" class="trip-list"></div>
+  </section>
+
+  <!-- ╔═ LUGGAGE TAB ═╗ -->
+  <section id="tab-luggage" class="tab-section">
+    <div class="tab-header glass-header">
+      <h2>行李清單</h2>
+      <div class="tab-header-actions">
+        <button class="btn-icon" id="add-luggage-btn" title="新增行李">＋</button>
+      </div>
+    </div>
+    <div class="luggage-stats glass">
+      <div class="lstat">
+        <span class="lstat-val" id="lug-total">0</span>
+        <span class="lstat-lbl">總件數</span>
+      </div>
+      <div class="lstat">
+        <span class="lstat-val" id="lug-done">0</span>
+        <span class="lstat-lbl">已勾選</span>
+      </div>
+      <div class="lstat">
+        <span class="lstat-val" id="lug-pct">0%</span>
+        <span class="lstat-lbl">完成率</span>
+      </div>
+    </div>
+    <div class="progress-bar-wrap" style="margin:0 16px 8px">
+      <div class="progress-bar" id="lug-progress-bar"></div>
+    </div>
+    <div id="luggage-list" class="luggage-list"></div>
+  </section>
+
+  <!-- ╔═ EXPENSE TAB ═╗ -->
+  <section id="tab-expense" class="tab-section">
+    <div class="tab-header glass-header">
+      <h2>旅行記帳</h2>
+      <button class="btn-icon" id="add-expense-btn" title="新增支出">＋</button>
+    </div>
+    <div class="expense-summary glass">
+      <div class="exp-stat">
+        <span class="exp-val" id="exp-today-aud">A$0</span>
+        <span class="exp-lbl">今日（澳幣）</span>
+      </div>
+      <div class="exp-stat">
+        <span class="exp-val" id="exp-total-aud">A$0</span>
+        <span class="exp-lbl">總計（澳幣）</span>
+      </div>
+      <div class="exp-stat">
+        <span class="exp-val" id="exp-total-twd">NT$0</span>
+        <span class="exp-lbl">總計（台幣）</span>
+      </div>
+    </div>
+    <canvas id="expense-chart" class="expense-chart" width="300" height="220"></canvas>
+    <div id="expense-list" class="expense-list"></div>
+  </section>
+
+  <!-- ╔═ MORE TAB ═╗ -->
+  <section id="tab-more" class="tab-section">
+    <div class="tab-header glass-header"><h2>設定與更多</h2></div>
+    <div class="more-list">
+      <div class="more-group glass">
+        <div class="more-row" id="toggle-dark">
+          <span>🌙 深色模式</span>
+          <div class="toggle-switch" id="dark-toggle">
+            <div class="toggle-knob"></div>
+          </div>
+        </div>
+      </div>
+      <div class="more-group glass">
+        <button class="more-row btn-row" id="export-btn">
+          <span>📤 匯出資料（JSON）</span><span class="chevron">›</span>
+        </button>
+        <button class="more-row btn-row" id="import-btn-trigger">
+          <span>📥 匯入資料（JSON）</span><span class="chevron">›</span>
+        </button>
+        <input type="file" id="import-input" accept=".json" style="display:none" />
+      </div>
+      <div class="more-group glass">
+        <button class="more-row btn-row danger" id="clear-btn">
+          <span>🗑 清除所有資料</span><span class="chevron">›</span>
+        </button>
+      </div>
+      <div class="more-group glass">
+        <div class="more-row">
+          <span>版本</span><span class="muted">v2.0.0</span>
+        </div>
+        <div class="more-row">
+          <span>行程數</span><span class="muted" id="info-trips">0</span>
+        </div>
+        <div class="more-row">
+          <span>行李項目</span><span class="muted" id="info-luggage">0</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /app-container -->
+
+<!-- ── BOTTOM NAV ── -->
+<nav class="bottom-nav glass">
+  <button class="nav-btn active" data-tab="home">
+    <span class="nav-icon">🏠</span><span class="nav-label">首頁</span>
+  </button>
+  <button class="nav-btn" data-tab="trip">
+    <span class="nav-icon">🗺️</span><span class="nav-label">行程</span>
+  </button>
+  <button class="nav-btn" data-tab="luggage">
+    <span class="nav-icon">🧳</span><span class="nav-label">行李</span>
+  </button>
+  <button class="nav-btn" data-tab="expense">
+    <span class="nav-icon">💰</span><span class="nav-label">記帳</span>
+  </button>
+  <button class="nav-btn" data-tab="more">
+    <span class="nav-icon">👤</span><span class="nav-label">更多</span>
+  </button>
+</nav>
+
+<!-- ── MODALS ── -->
+
+<!-- Add/Edit Trip Modal -->
+<div class="modal-overlay hidden" id="trip-modal-overlay">
+  <div class="modal glass">
+    <div class="modal-header">
+      <h3 id="trip-modal-title">新增行程</h3>
+      <button class="modal-close" id="trip-modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <label>天數 (Day)*
+        <input type="number" id="f-day" min="1" placeholder="1" />
+      </label>
+      <label>日期
+        <input type="date" id="f-date" />
+      </label>
+      <label>城市
+        <select id="f-city">
+          <option value="Sydney">Sydney</option>
+          <option value="Blue Mountains">Blue Mountains</option>
+          <option value="Kiama">Kiama</option>
+          <option value="Coffs Harbour">Coffs Harbour</option>
+          <option value="Byron Bay">Byron Bay</option>
+          <option value="Gold Coast">Gold Coast</option>
+          <option value="Brisbane">Brisbane</option>
+        </select>
+      </label>
+      <label>景點名稱*
+        <input type="text" id="f-name" placeholder="例：Sydney Opera House" />
+      </label>
+      <label>時間
+        <input type="time" id="f-time" />
+      </label>
+      <label>備註
+        <textarea id="f-note" rows="2" placeholder="交通方式、票價等…"></textarea>
+      </label>
+      <label>景點圖片 URL
+        <input type="url" id="f-img" placeholder="https://…（留空使用預設）" />
+      </label>
+      <label>Google Map 連結
+        <input type="url" id="f-map" placeholder="https://maps.google.com/…" />
+      </label>
+      <div id="f-img-preview" class="img-preview hidden"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" id="trip-modal-cancel">取消</button>
+      <button class="btn-primary" id="trip-modal-save">儲存</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Luggage Modal -->
+<div class="modal-overlay hidden" id="luggage-modal-overlay">
+  <div class="modal glass">
+    <div class="modal-header">
+      <h3>新增行李</h3>
+      <button class="modal-close" id="lug-modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <label>物品名稱*
+        <input type="text" id="lug-name" placeholder="例：護照" />
+      </label>
+      <label>分類
+        <select id="lug-cat">
+          <option value="證件">證件</option>
+          <option value="衣物">衣物</option>
+          <option value="3C電子">3C電子</option>
+          <option value="盥洗用品">盥洗用品</option>
+          <option value="藥品">藥品</option>
+          <option value="其他">其他</option>
+        </select>
+      </label>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" id="lug-modal-cancel">取消</button>
+      <button class="btn-primary" id="lug-modal-save">儲存</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Expense Modal -->
+<div class="modal-overlay hidden" id="expense-modal-overlay">
+  <div class="modal glass">
+    <div class="modal-header">
+      <h3>新增支出</h3>
+      <button class="modal-close" id="exp-modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <label>項目名稱*
+        <input type="text" id="exp-name" placeholder="例：午餐" />
+      </label>
+      <label>金額（澳幣 A$）*
+        <input type="number" id="exp-aud" min="0" step="0.01" placeholder="0.00" />
+      </label>
+      <label>匯率（1 AUD = TWD）
+        <input type="number" id="exp-rate" value="21" step="0.1" />
+      </label>
+      <label>分類
+        <select id="exp-cat">
+          <option value="餐飲">🍜 餐飲</option>
+          <option value="交通">🚌 交通</option>
+          <option value="住宿">🏨 住宿</option>
+          <option value="景點">🎡 景點</option>
+          <option value="購物">🛍 購物</option>
+          <option value="其他">📦 其他</option>
+        </select>
+      </label>
+      <label>日期
+        <input type="date" id="exp-date" />
+      </label>
+      <label>備註
+        <input type="text" id="exp-note" placeholder="（選填）" />
+      </label>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" id="exp-modal-cancel">取消</button>
+      <button class="btn-primary" id="exp-modal-save">儲存</button>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm Dialog -->
+<div class="modal-overlay hidden" id="confirm-overlay">
+  <div class="modal glass confirm-modal">
+    <p id="confirm-msg">確定要刪除？</p>
+    <div class="modal-footer">
+      <button class="btn-secondary" id="confirm-cancel">取消</button>
+      <button class="btn-danger" id="confirm-ok">確定</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast hidden" id="toast"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/trip.js"></script>
+<script src="js/luggage.js"></script>
+<script src="js/expense.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
